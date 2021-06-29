@@ -1,0 +1,128 @@
+[
+  {
+    "firstname": "mosh",
+    "lastname": "hamadini",
+    "grade": "5",
+    "role": "student",
+    "email": "mosh@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "angelina",
+    "lastname": "stewart",
+    "grade": "5",
+    "role": "student",
+    "email": "angelina@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mark",
+    "lastname": "hamadini",
+    "grade": "5",
+    "role": "student",
+    "email": "mark@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "john",
+    "lastname": "doe",
+    "grade": "5",
+    "role": "student",
+    "email": "john@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mary",
+    "lastname": "hamadini",
+    "grade": "5",
+    "role": "student",
+    "email": "mary@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "telusko",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "telusko@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "jordan",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "jordan@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mike",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "mike@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mojo",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "mojo@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "honda",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "honda@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "gordan",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "gordan@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "joly",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "joly@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "binay",
+    "lastname": "shrestha",
+    "role": "admin",
+    "email": "binay@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "jane",
+    "lastname": "hamadini",
+    "role": "teacher",
+    "email": "jane@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mathew",
+    "lastname": "hamadini",
+    "grade": "5",
+    "role": "student",
+    "email": "mathew@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  }
+]
