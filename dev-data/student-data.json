@@ -1,0 +1,112 @@
+[
+  {
+    "firstname": "mosh",
+    "lastname": "hamadini",
+    "role": "student",
+    "grade": "10",
+    "batch": "2021",
+    "email": "mosh@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "angelina",
+    "lastname": "stewart",
+    "grade": "10",
+    "batch": "2021",
+
+    "role": "student",
+    "email": "angelina@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mark",
+    "lastname": "hamadini",
+    "role": "student",
+    "grade": "9",
+    "batch": "2021",
+
+    "email": "mark@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "john",
+    "lastname": "doe",
+    "role": "student",
+    "grade": "9",
+    "batch": "2021",
+
+    "email": "john@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mary",
+    "lastname": "hamadini",
+    "role": "student",
+    "grade": "8",
+    "batch": "2021",
+
+    "email": "mary@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "mathew",
+    "lastname": "hamadini",
+    "role": "student",
+    "grade": "8",
+    "batch": "2021",
+
+    "email": "mathew@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "bob",
+    "lastname": "smith",
+    "role": "student",
+    "grade": "7",
+    "batch": "2021",
+
+    "email": "bob@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "anna",
+    "lastname": "joe",
+    "grade": "7",
+    "batch": "2021",
+
+    "role": "student",
+    "email": "anna@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+
+  {
+    "firstname": "maria",
+    "lastname": "joe",
+    "role": "student",
+    "grade": "6",
+    "batch": "2021",
+
+    "email": "maria@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  },
+  {
+    "firstname": "monty",
+    "lastname": "joe",
+    "role": "student",
+    "grade": "6",
+    "batch": "2021",
+
+    "email": "monty@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+  }
+]

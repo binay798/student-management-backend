@@ -1,50 +1,5 @@
 [
   {
-    "firstname": "mosh",
-    "lastname": "hamadini",
-    "grade": "5",
-    "role": "student",
-    "email": "mosh@gmail.com",
-    "password": "123456",
-    "confirmPassword": "123456"
-  },
-  {
-    "firstname": "angelina",
-    "lastname": "stewart",
-    "grade": "5",
-    "role": "student",
-    "email": "angelina@gmail.com",
-    "password": "123456",
-    "confirmPassword": "123456"
-  },
-  {
-    "firstname": "mark",
-    "lastname": "hamadini",
-    "grade": "5",
-    "role": "student",
-    "email": "mark@gmail.com",
-    "password": "123456",
-    "confirmPassword": "123456"
-  },
-  {
-    "firstname": "john",
-    "lastname": "doe",
-    "grade": "5",
-    "role": "student",
-    "email": "john@gmail.com",
-    "password": "123456",
-    "confirmPassword": "123456"
-  },
-  {
-    "firstname": "mary",
-    "lastname": "hamadini",
-    "grade": "5",
-    "role": "student",
-    "email": "mary@gmail.com",
-    "password": "123456",
-    "confirmPassword": "123456"
-  },
-  {
     "firstname": "telusko",
     "lastname": "hamadini",
     "role": "teacher",
@@ -117,11 +72,10 @@
     "confirmPassword": "123456"
   },
   {
-    "firstname": "mathew",
-    "lastname": "hamadini",
-    "grade": "5",
-    "role": "student",
-    "email": "mathew@gmail.com",
+    "firstname": "bindu",
+    "lastname": "suwal",
+    "role": "teacher",
+    "email": "bindu@gmail.com",
     "password": "123456",
     "confirmPassword": "123456"
   }

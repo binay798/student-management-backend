@@ -6,6 +6,9 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Must have a name'],
   },
+  image: {
+    type: String,
+  },
   role: {
     type: String,
     enum: ['student', 'teacher'],
@@ -50,12 +53,14 @@ const userSchema = new mongoose.Schema({
   grade: {
     type: String,
   },
+  batch: {
+    type: Date,
+  },
   role: {
     type: String,
     required: [true, 'Must contain role'],
     enum: ['student', 'teacher', 'admin'],
     default: 'student',
-    select: false,
   },
   email: {
     type: String,
@@ -66,6 +71,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Must contain password'],
     minLength: 6,
+    select: false,
   },
   confirmPassword: {
     type: String,
@@ -84,6 +90,13 @@ const userSchema = new mongoose.Schema({
     type: Date,
   },
   mobile: {
+    type: Number,
+  },
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other'],
+  },
+  address: {
     type: String,
   },
   allPayments: [paymentSchema],

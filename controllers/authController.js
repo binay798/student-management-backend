@@ -91,9 +91,9 @@ exports.protectRoutes = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
   try {
-    const excludeFields = ['email', 'password', 'role', 'confirmPassword'];
+    const excludeFields = ['password', 'confirmPassword'];
     excludeFields.forEach((item) => delete req.body[item]);
-    const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     if (!updatedUser) return next(new CustomError('User not found', 404));
