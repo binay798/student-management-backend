@@ -3,6 +3,7 @@ const { constants } = require('perf_hooks');
 const sharp = require('sharp');
 const CustomError = require('../utils/CustomError');
 const Image = require('../modals/imageModal');
+const removeFile = require('./../utils/removeFile');
 
 const filePath = path.join(`${__dirname}/../uploads`);
 
@@ -51,6 +52,12 @@ exports.getImages = async (req, res, next) => {
 exports.deleteImage = async (req, res, next) => {
   try {
     const image = await Image.findByIdAndDelete(req.params.id);
+    const name = image.imageUrl.split('/');
+
+    // remove image from the directory
+    await removeFile(
+      path.join(`${__dirname}/../uploads`, name[name.length - 1])
+    );
 
     res.status(200).json({
       status: 'success',

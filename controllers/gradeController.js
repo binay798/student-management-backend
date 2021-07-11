@@ -4,6 +4,11 @@ const ApiFeatures = require('../utils/apiFeatures');
 
 exports.createGrade = async (req, res, next) => {
   try {
+    const { batch, name } = req.body;
+    const isGradeInDb = await Grade.findOne({ batch, name });
+
+    if (isGradeInDb !== null)
+      return next(new CustomError('Already exist', 404));
     const grade = await Grade.create(req.body);
 
     return res.status(200).json({

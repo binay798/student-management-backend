@@ -32,3 +32,19 @@ exports.updateUser = async (req, res, next) => {
     return next(new CustomError(err.message, 404));
   }
 };
+
+exports.searchUser = async (req, res, next) => {
+  try {
+    const { firstname, role } = req.params;
+    const users = await User.find({
+      role,
+      firstname: { $regex: new RegExp(firstname, 'i') },
+    });
+    return res.status(200).json({
+      status: 'success',
+      users,
+    });
+  } catch (err) {
+    return next(new CustomError(err.message, 404));
+  }
+};

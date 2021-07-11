@@ -20,6 +20,10 @@ const gradeSchema = new mongoose.Schema({
       ref: 'User',
     },
   ],
+  classTeacher: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   allSubjects: [
     {
       name: String,
@@ -27,7 +31,6 @@ const gradeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
       },
-      isClassTeacher: Boolean,
     },
   ],
 });

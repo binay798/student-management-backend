@@ -28,7 +28,7 @@ const sendToken = (res, user) => {
 exports.signup = async (req, res, next) => {
   try {
     const user = await User.create(req.body);
-    sendToken(res, user);
+    return sendToken(res, user);
   } catch (err) {
     return next(new CustomError(err.message, 404));
   }
