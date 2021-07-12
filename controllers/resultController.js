@@ -14,3 +14,16 @@ exports.createResult = async (req, res, next) => {
     return next(new CustomError(err.message, 404));
   }
 };
+
+exports.getResult = async (req, res, next) => {
+  try {
+    const result = await Result.find();
+
+    return res.json({
+      status: 'success',
+      result,
+    });
+  } catch (err) {
+    return next(new CustomError(err.message, 404));
+  }
+};

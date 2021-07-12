@@ -16,8 +16,11 @@ const gradeSchema = new mongoose.Schema({
   },
   allStudents: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      rollNumber: Number,
+      student: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
     },
   ],
   classTeacher: {

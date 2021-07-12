@@ -17,6 +17,10 @@ const resultSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'Must contain batch'],
   },
+  resultType: {
+    type: Number,
+    required: [true, 'Must contain type of result'],
+  },
 });
 
 const Result = new mongoose.model('Result', resultSchema);

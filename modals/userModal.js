@@ -100,6 +100,10 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   allPayments: [paymentSchema],
+  allResults: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Result',
+  },
 });
 
 userSchema.pre('save', async function (next) {

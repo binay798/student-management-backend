@@ -10,10 +10,13 @@ const options = {
   useFindAndModify: true,
   useCreateIndex: true,
 };
+
 mongoose
   .connect(process.env.DB, options)
   .then(() => console.log('Successfully connected to the database'))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 const PORT = process.env.PORT || 8000;
 
