@@ -5,7 +5,7 @@ const resultSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Must contain url of photo'],
   },
-  name: {
+  title: {
     type: String,
     required: [true, 'Must contain name'],
   },
@@ -14,12 +14,12 @@ const resultSchema = new mongoose.Schema({
     required: [true, 'Must contain grade'],
   },
   batch: {
-    type: Number,
+    type: Date,
     required: [true, 'Must contain batch'],
   },
-  resultType: {
-    type: Number,
-    required: [true, 'Must contain type of result'],
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
 });
 

@@ -1,33 +1,29 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const paymentSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: [true, 'Must have a name'],
   },
   image: {
     type: String,
   },
-  role: {
-    type: String,
-    enum: ['student', 'teacher'],
-    required: [true, 'Must have a role'],
-  },
   grade: {
     type: String,
   },
   batch: {
     type: Date,
-    required: [true, 'Must contain batch date'],
   },
   paymentAmount: {
     type: Number,
     required: [true, 'Must have a payment amount'],
   },
-  paymentDate: {
+
+  createdAt: {
     type: Date,
-    required: [true, 'Must have a payment date'],
+    default: Date.now(),
   },
   paymentDescription: {
     type: String,
@@ -100,10 +96,12 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   allPayments: [paymentSchema],
-  allResults: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Result',
-  },
+  allResults: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Result',
+    },
+  ],
 });
 
 userSchema.pre('save', async function (next) {
@@ -112,10 +110,23 @@ userSchema.pre('save', async function (next) {
   }
   this.password = await bcrypt.hash(this.password, 10);
   this.confirmPassword = undefined;
+  return 1;
 });
 
 userSchema.methods.comparePassword = async (typedPassword, hashedPassword) => {
-  return await bcrypt.compare(typedPassword, hashedPassword);
+  const isCorrect = await bcrypt.compare(typedPassword, hashedPassword);
+  return isCorrect;
+};
+
+userSchema.methods.createPasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+  this.passwordResetDate = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 const User = new mongoose.model('User', userSchema);

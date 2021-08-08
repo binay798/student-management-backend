@@ -16,7 +16,7 @@ exports.createImage = async (req, res, next) => {
     // upload and save file to webp format
     await sharp(req.file.buffer)
       .resize({
-        height: 400,
+        height: 600,
         fit: sharp.fit.contain,
       })
       .webp()

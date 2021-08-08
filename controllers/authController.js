@@ -1,6 +1,8 @@
+const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const User = require('../modals/userModal');
 const CustomError = require('../utils/CustomError');
+const Email = require('../utils/Email');
 
 const createToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -9,8 +11,7 @@ const createToken = (id) =>
 
 const sendToken = (res, user) => {
   user.password = undefined;
-
-  const token = createToken(user._id);
+  const token = createToken(user.id);
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_EXPIRES_IN * 3600 * 1000 * 24
@@ -51,9 +52,9 @@ exports.autoLoginThroughCookies = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
     // check existence of user through email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, role }).select('+password');
     if (!user)
       return next(new CustomError('Email or password doesnot match', 404));
     // compare password
@@ -102,6 +103,57 @@ exports.updateUser = async (req, res, next) => {
     return res.json({
       status: 'success',
       user: updatedUser,
+    });
+  } catch (err) {
+    return next(new CustomError(err.message, 404));
+  }
+};
+
+exports.forgotPassword = async (req, res, next) => {
+  try {
+    // find if the user exist or not
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user)
+      return next(new CustomError('User with this email doesnot exist', 404));
+    // if user exist then send token to his/her email
+    const resetToken = user.createPasswordResetToken();
+    await user.save({ validateBeforeSave: false });
+    const resetUrl = `${req.protocol}://${req.get(
+      'host'
+    )}/auth/resetPassword/${resetToken}`;
+    // send email
+    const send = new Email(email, 'Reset password', resetUrl);
+    await send.sendMail();
+
+    res.status(200).json({
+      status: 'success',
+    });
+  } catch (err) {
+    return next(new CustomError(err.message, 404));
+  }
+};
+
+exports.resetPassword = async (req, res, next) => {
+  try {
+    const { resetToken } = req.params;
+    const decodedToken = crypto
+      .createHash('sha256')
+      .update(resetToken)
+      .digest('hex');
+    const user = await User.findOne({
+      passwordResetToken: decodedToken,
+      passwordResetDate: { $gt: Date.now() },
+    });
+    if (!user) return next(new CustomError('Token has been expired', 404));
+    user.password = req.body.password;
+    user.confirmPassword = req.body.confirmPassword;
+    user.passwordResetToken = undefined;
+    user.passwordResetDate = undefined;
+    await user.save();
+
+    res.status(200).json({
+      status: 'success',
     });
   } catch (err) {
     return next(new CustomError(err.message, 404));
