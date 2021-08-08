@@ -18,7 +18,8 @@ exports.createEvent = async (req, res, next) => {
 
 exports.getEvents = async (req, res, next) => {
   try {
-    const events = await Event.find();
+    //todo: make query more general rather than always defaulting to the below given params.
+    const events = await Event.find().sort({createdAt: 'desc'}).limit(10);  
 
     return res.status(200).json({
       status: 'success',
