@@ -7,7 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const gradeRoutes = require('./routes/gradeRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const imageRoutes = require('./routes/imageRoutes');
-
+const CustomError = require('./utils/CustomError');
 const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
@@ -30,6 +30,13 @@ app.use('/api/v1/grade', gradeRoutes);
 app.use('/api/v1/events', eventRoutes);
 app.use('/api/v1/images', imageRoutes);
 
+// UNHANDLED ROUTES
+app.all('*', (req, res, next) => {
+  next(new CustomError(`Cannot find ${req.originalUrl}`, 404));
+  // res.json({
+  //   msg: 'error',
+  // });
+});
 // global error handler
 app.use(globalErrorHandler);
 
