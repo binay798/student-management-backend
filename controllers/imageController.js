@@ -41,6 +41,17 @@ exports.getImages = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.searchImage = catchAsync(async (req, res, next) => {
+  const { name } = req.query;
+  const images = await Image.find({
+    name: { $regex: new RegExp(name, 'i') },
+  });
+  return res.status(200).json({
+    status: 'success',
+    images,
+  });
+});
+
 exports.deleteImage = catchAsync(async (req, res, next) => {
   const image = await Image.findByIdAndDelete(req.params.id);
   const name = image.imageUrl.split('/');

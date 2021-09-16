@@ -91,3 +91,44 @@ exports.updateStudentInsideGrade = catchAsync(async (req, res, next) => {
     grade,
   });
 });
+
+exports.addStudentInsideGrade = catchAsync(async (req, res, next) => {
+  // let grade = await Grade.findByIdAndUpdate();
+  console.log(req.body);
+  let grade = await Grade.findByIdAndUpdate(req.params.gradeId, {
+    $addToSet: {
+      allStudents: req.body,
+    },
+  });
+  grade = await Grade.findById(req.params.gradeId).populate([
+    'allStudents.student',
+    'allSubjects.teacher',
+  ]);
+  return res.status(200).json({
+    status: 'success',
+    grade,
+  });
+});
+
+exports.removeStudentFromGrade = catchAsync(async (req, res, next) => {
+  console.log(req.body.studentId);
+  let grade = await Grade.findByIdAndUpdate(
+    req.params.gradeId,
+    {
+      $pull: {
+        allStudents: {
+          _id: req.body.studentId,
+        },
+      },
+    },
+    { new: true }
+  );
+  // grade = await Grade.findById(req.params.gradeId).populate([
+  //   'allStudents.student',
+  //   'allSubjects.teacher',
+  // ]);
+  return res.status(200).json({
+    status: 'success',
+    grade,
+  });
+});

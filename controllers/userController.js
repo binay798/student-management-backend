@@ -20,11 +20,11 @@ exports.getUsers = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateUser = catchAsync(async (req, res, next) => {
-  return res.status(200).json({
+exports.updateUser = catchAsync(async (req, res, next) =>
+  res.status(200).json({
     status: 'success',
-  });
-});
+  })
+);
 
 exports.searchUser = catchAsync(async (req, res, next) => {
   const { firstname, role } = req.params;

@@ -69,6 +69,10 @@ const userSchema = new mongoose.Schema({
     minLength: 6,
     select: false,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
   confirmPassword: {
     type: String,
     required: [true, 'Must contain confirm password'],
