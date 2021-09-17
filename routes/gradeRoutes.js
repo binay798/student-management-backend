@@ -8,6 +8,9 @@ router.post('/update/:id/:type', gradeController.updateGrade);
 router.patch('/addStudent/:gradeId', gradeController.addStudentInsideGrade);
 router.patch('/removeStudent/:gradeId', gradeController.removeStudentFromGrade);
 
+router.patch('/addSubject/:gradeId', gradeController.addSubjectInsideGrade);
+router.patch('/removeSubject/:gradeId', gradeController.removeSubjectFromGrade);
+
 router.patch('/:gradeId/:studentId', gradeController.updateStudentInsideGrade);
 router.get('/:gradeId/:studentId', gradeController.getStudentFromGrade);
 

@@ -93,8 +93,6 @@ exports.updateStudentInsideGrade = catchAsync(async (req, res, next) => {
 });
 
 exports.addStudentInsideGrade = catchAsync(async (req, res, next) => {
-  // let grade = await Grade.findByIdAndUpdate();
-  console.log(req.body);
   let grade = await Grade.findByIdAndUpdate(req.params.gradeId, {
     $addToSet: {
       allStudents: req.body,
@@ -111,8 +109,7 @@ exports.addStudentInsideGrade = catchAsync(async (req, res, next) => {
 });
 
 exports.removeStudentFromGrade = catchAsync(async (req, res, next) => {
-  console.log(req.body.studentId);
-  let grade = await Grade.findByIdAndUpdate(
+  const grade = await Grade.findByIdAndUpdate(
     req.params.gradeId,
     {
       $pull: {
@@ -123,10 +120,51 @@ exports.removeStudentFromGrade = catchAsync(async (req, res, next) => {
     },
     { new: true }
   );
-  // grade = await Grade.findById(req.params.gradeId).populate([
-  //   'allStudents.student',
-  //   'allSubjects.teacher',
-  // ]);
+
+  return res.status(200).json({
+    status: 'success',
+    grade,
+  });
+});
+
+exports.addSubjectInsideGrade = catchAsync(async (req, res, next) => {
+  let grade = await Grade.findByIdAndUpdate(
+    req.params.gradeId,
+    {
+      $addToSet: {
+        allSubjects: req.body,
+      },
+    },
+    { new: true }
+  );
+  grade = await Grade.findById(req.params.gradeId).populate([
+    'allStudents.student',
+    'allSubjects.teacher',
+  ]);
+
+  return res.status(200).json({
+    status: 'success',
+    grade,
+  });
+});
+
+exports.removeSubjectFromGrade = catchAsync(async (req, res, next) => {
+  let grade = await Grade.findByIdAndUpdate(
+    req.params.gradeId,
+    {
+      $pull: {
+        allSubjects: {
+          _id: req.body.subjectId,
+        },
+      },
+    },
+    { new: true }
+  );
+  grade = await Grade.findById(req.params.gradeId).populate([
+    'allStudents.student',
+    'allSubjects.teacher',
+  ]);
+
   return res.status(200).json({
     status: 'success',
     grade,
