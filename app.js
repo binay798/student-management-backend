@@ -36,10 +36,7 @@ app.get('/', (req, res) => {
 
 // UNHANDLED ROUTES
 app.all('*', (req, res, next) => {
-  next(new CustomError(`Cannot find ${req.originalUrl}`, 404));
-  // res.json({
-  //   msg: 'error',
-  // });
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 // global error handler
 app.use(globalErrorHandler);
