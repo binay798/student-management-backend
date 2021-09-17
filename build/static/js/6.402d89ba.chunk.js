@@ -1,0 +1,2 @@
+(this.webpackJsonpclient=this.webpackJsonpclient||[]).push([[6],{239:function(e,c,n){},260:function(e,c,n){"use strict";n.r(c);n(0);var t=n(239),i=n.n(t),s=n(8);c.default=function(){return Object(s.jsx)("div",{className:i.a.teacher,children:Object(s.jsx)("div",{children:"Teacher"})})}}}]);
+//# sourceMappingURL=6.402d89ba.chunk.js.map

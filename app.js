@@ -14,6 +14,7 @@ const app = express();
 
 // middlewares
 app.use('/static/images', express.static(path.join(`${__dirname}/uploads`)));
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(
@@ -29,6 +30,9 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/grade', gradeRoutes);
 app.use('/api/v1/events', eventRoutes);
 app.use('/api/v1/images', imageRoutes);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // UNHANDLED ROUTES
 app.all('*', (req, res, next) => {
