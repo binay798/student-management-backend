@@ -24,6 +24,9 @@ async function uploadData(type) {
       // await User.insertMany([...students, ...teachers]);
 
       console.log('uploaded');
+    } else if (type === 'delete') {
+      await User.deleteMany();
+      console.log('deleted');
     }
   } catch (err) {
     console.log(err.message);

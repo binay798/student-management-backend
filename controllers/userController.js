@@ -38,57 +38,57 @@ exports.searchUser = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.addResult = catchAsync(async (req, res, next) => {
-  // create result
-  const result = await Result.create(req.body);
-  // save object id to users database
-  await User.findByIdAndUpdate(
-    req.params.id,
-    {
-      $addToSet: { allResults: result.id },
-    },
-    { new: true }
-  );
+// exports.addResult = catchAsync(async (req, res, next) => {
+//   // create result
+//   const result = await Result.create(req.body);
+//   // save object id to users database
+//   await User.findByIdAndUpdate(
+//     req.params.id,
+//     {
+//       $addToSet: { allResults: result.id },
+//     },
+//     { new: true }
+//   );
 
-  return res.status(200).json({
-    status: 'success',
-    result,
-  });
-});
+//   return res.status(200).json({
+//     status: 'success',
+//     result,
+//   });
+// });
 
-exports.getResults = catchAsync(async (req, res, next) => {
-  const result = await User.findById(req.params.id)
-    .select(['allResults'])
-    .sort('-createdAt')
-    .populate({
-      path: 'allResults',
-      match: {
-        batch: req.params.batch,
-        grade: req.params.grade,
-      },
-    });
+// exports.getResults = catchAsync(async (req, res, next) => {
+//   const result = await User.findById(req.params.id)
+//     .select(['allResults'])
+//     .sort('-createdAt')
+//     .populate({
+//       path: 'allResults',
+//       match: {
+//         batch: req.params.batch,
+//         grade: req.params.grade,
+//       },
+//     });
 
-  return res.status(200).json({
-    status: 'success',
-    result,
-  });
-});
+//   return res.status(200).json({
+//     status: 'success',
+//     result,
+//   });
+// });
 
 // delete result
-exports.deleteResult = catchAsync(async (req, res, next) => {
-  await Result.findByIdAndDelete(req.params.resultId);
-  const user = await User.findByIdAndUpdate(
-    req.params.userId,
-    {
-      $pull: { allResults: req.params.resultId },
-    },
-    { new: true }
-  );
-  return res.status(200).json({
-    status: 'success',
-    user,
-  });
-});
+// exports.deleteResult = catchAsync(async (req, res, next) => {
+//   await Result.findByIdAndDelete(req.params.resultId);
+//   const user = await User.findByIdAndUpdate(
+//     req.params.userId,
+//     {
+//       $pull: { allResults: req.params.resultId },
+//     },
+//     { new: true }
+//   );
+//   return res.status(200).json({
+//     status: 'success',
+//     user,
+//   });
+// });
 
 // Add payments
 exports.addPayment = catchAsync(async (req, res, next) => {

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const validator = require('validator');
 
 const paymentSchema = new mongoose.Schema({
   title: {
@@ -62,6 +63,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Must contain an email'],
     unique: true,
+    validate: {
+      validator: function (el) {
+        return validator.isEmail(el);
+      },
+      message: 'Please type valid email',
+    },
   },
   password: {
     type: String,
