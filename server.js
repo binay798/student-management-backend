@@ -1,6 +1,10 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+process.on('uncaughtException', (err) => {
+  console.log(err.message);
+  process.exit(1);
+});
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
@@ -13,11 +17,17 @@ const options = {
 
 mongoose
   .connect(process.env.DB, options)
-  .then(() => console.log('Successfully connected to the database'))
-  .catch((err) => {
-    console.log(err.message);
-  });
+  .then(() => console.log('Successfully connected to the database'));
 
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, () => console.log(`Server running at port ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Server running at port ${PORT}`)
+);
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
