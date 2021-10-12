@@ -3,17 +3,30 @@ const gradeController = require('../controllers/gradeController');
 
 const router = express.Router();
 
-router.post('/', gradeController.createGrade);
-router.post('/update/:id/:type', gradeController.updateGrade);
-router.patch('/addStudent/:gradeId', gradeController.addStudentInsideGrade);
-router.patch('/removeStudent/:gradeId', gradeController.removeStudentFromGrade);
+router
+  .route('/')
+  .post(gradeController.createGrade)
+  .get(gradeController.getAllGrades);
 
-router.patch('/addSubject/:gradeId', gradeController.addSubjectInsideGrade);
-router.patch('/removeSubject/:gradeId', gradeController.removeSubjectFromGrade);
+router
+  .route('/:id')
+  .patch(gradeController.updateGrade)
+  .get(gradeController.getGrade)
+  .delete(gradeController.deleteGrade);
 
-router.patch('/:gradeId/:studentId', gradeController.updateStudentInsideGrade);
-router.get('/:gradeId/:studentId', gradeController.getStudentFromGrade);
+// AFTER REFACTOR
+// router.post('/update/:id/:type', gradeController.updateGrade);
+// test
+// router.patch('/:id', gradeController.updateGrade);
+// router.patch('/addStudent/:gradeId', gradeController.addStudentInsideGrade);
+// router.patch('/removeStudent/:gradeId', gradeController.removeStudentFromGrade);
 
-router.get('/', gradeController.getGrade);
+// router.patch('/addSubject/:gradeId', gradeController.addSubjectInsideGrade);
+// router.patch('/removeSubject/:gradeId', gradeController.removeSubjectFromGrade);
+
+// router.patch('/:gradeId/:studentId', gradeController.updateStudentInsideGrade);
+// router.get('/:gradeId/:studentId', gradeController.getStudentFromGrade);
+
+// router.get('/', gradeController.getGrade);
 
 module.exports = router;

@@ -35,9 +35,9 @@ app.get('/', (req, res) => {
 });
 
 // UNHANDLED ROUTES
-app.all('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.all('*', (req, res, next) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 // global error handler
 app.use(globalErrorHandler);
 
